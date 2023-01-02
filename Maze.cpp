@@ -16,6 +16,7 @@ int nMapHeight = 16;
 int nMapWidth  = 16;
 
 float fFOV = 3.14159 / 4.0;
+float fDepth = 16.0f;
 
 int main()
 {
@@ -50,6 +51,25 @@ int main()
 			float fRayAngle = (fPlayerA - fFOV / 2.0f) + ((float)i / (float)nScreenWidth) * fFOV;
 
 			float fDistanceToWall = 0;
+			bool bHitWall = false;
+
+			float fEyeX = sinf(fRayAngle);
+			float fEyeY = cosf(fRayAngle);
+
+			while (!bHitWall)
+			{
+
+				fDistanceToWall += 0.1f;
+
+				int nTestX = (int)(fPlayerX + fEyeX * fDistanceToWall);
+				int nTestY = (int)(fPlayerY + fEyeY * fDistanceToWall);
+
+				if (nTestX < 0 || nTestX >= nMapWidth || nTestY < 0 || nTestY >= nMapHeight)
+				{
+					bHitWall = true;
+					fDistanceToWall = fDepth;
+				}
+			}
 		}
 		screen[nScreenWidth * nScreenHeight - 1] = '\0';
 		WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
