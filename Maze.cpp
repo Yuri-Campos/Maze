@@ -15,6 +15,8 @@ float fPlayerA = 0.0f;
 int nMapHeight = 16;
 int nMapWidth  = 16;
 
+float fFOV = 3.14159 / 4.0;
+
 int main()
 {
 	wchar_t* screen = new wchar_t[nScreenWidth * nScreenHeight];
@@ -43,6 +45,12 @@ int main()
 
 	while (1)
 	{
+		for (int i = 0; i < nScreenWidth; i++)
+		{
+			float fRayAngle = (fPlayerA - fFOV / 2.0f) + ((float)i / (float)nScreenWidth) * fFOV;
+
+			float fDistanceToWall = 0;
+		}
 		screen[nScreenWidth * nScreenHeight - 1] = '\0';
 		WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
 	}
