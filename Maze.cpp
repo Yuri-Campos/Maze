@@ -7,8 +7,8 @@ using namespace std;
 int nScreenWidth = 120;
 int nScreenHeight = 40;
 
-float fPlayerX = 0.0f;
-float fPlayerY = 0.0f;
+float fPlayerX = 8.0f;
+float fPlayerY = 8.0f;
 float fPlayerA = 0.0f;
 
 
@@ -69,11 +69,33 @@ int main()
 					bHitWall = true;
 					fDistanceToWall = fDepth;
 				}
+				else
+				{
+					if (map[nTestY * nMapWidth + nTestX] = '#')
+					{
+						bHitWall = true;
+					}
+
+				}
+			}
+
+			int nCeiling = (float)(nScreenHeight / 2.0) - nScreenHeight / ((float)fDistanceToWall);
+			int nFloor = nScreenHeight - nCeiling;
+
+			for (int y = 0; y < nScreenHeight; y++)
+			{
+				if (y < nCeiling)
+					screen[y * nScreenWidth + x] = ' ';
+				else if (y > nCeiling && y <= nFloor)
+					screen[y * nScreenWidth + x] = '#';
+				else
+					screen[y * nScreenWidth + x] = '#';
 			}
 		}
 		screen[nScreenWidth * nScreenHeight - 1] = '\0';
 		WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
 	}
+	
 
 
 
