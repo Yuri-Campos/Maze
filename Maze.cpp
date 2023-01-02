@@ -22,7 +22,25 @@ int main()
 	SetConsoleActiveScreenBuffer(hConsole);
 	DWORD dwBytesWritten = 0;
 
-	
+	wstring map;
+
+	map += L"################";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"##...........###";
+	map += L"################";
+	map += L"################";
+	map += L"################";
+
 	while (1)
 	{
 		screen[nScreenWidth * nScreenHeight - 1] = '\0';
